@@ -7,4 +7,4 @@ For future use
 `waveform-generator file.flac > samples.json`
 
 # Example
-Generated `waveform` useing canvas http://jsbin.com/tebetoz/1
+Generated `waveform` using canvas http://jsbin.com/tebetoz/1
