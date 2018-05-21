@@ -12,25 +12,32 @@ import (
 func main() {
 
 	if len(os.Args) > 1 {
-		file, err := os.OpenFile(os.Args[1], os.O_RDWR|os.O_CREATE, 0755)
+		file, err := os.OpenFile(os.Args[1], os.O_RDONLY, 0755)
 
-		checkError(err)
+		if err != nil {
+			panic(err)
+		}
 
 		w, err := waveform.New(file)
 
-		checkError(err)
+		if err != nil {
+			panic(err)
+		}
 
 		values, err := w.Compute()
 
-		encoded, _ := json.Marshal(values)
+		if err != nil {
+			panic(err)
+		}
+
+		encoded, err := json.Marshal(values)
+
+		if err != nil {
+			panic(err)
+		}
+
 		fmt.Println(string(encoded))
 	} else {
 		fmt.Println("Please prvode file")
-	}
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
 	}
 }
